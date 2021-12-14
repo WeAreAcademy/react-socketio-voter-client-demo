@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import NewCandidateForm from './NewCandidateForm'
 import { baseURL } from '../api';
-import fakeCandidatesData from '../data/fakeCandidatesData.json'
+// import fakeCandidatesData from '../data/fakeCandidatesData.json'
 export default function Candidates() {
     interface ICandidate {
         id?: number;

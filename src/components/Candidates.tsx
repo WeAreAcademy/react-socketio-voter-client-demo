@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import NewCandidateForm from './NewCandidateForm'
 import { baseURL } from '../api';
+import { io } from 'socket.io-client'
 // import fakeCandidatesData from '../data/fakeCandidatesData.json'
 export default function Candidates() {
     interface ICandidate {
@@ -26,6 +27,14 @@ export default function Candidates() {
         fetchAndStoreCandidates();
     }, []);
 
+    useEffect(() => {
+        const socket = io(baseURL);
+        console.log('connecting to socket.io and registering interest');
+        function handleCandidatesUpdate(newCandidates: ICandidate[]) {
+            setCandidates(newCandidates);
+        }
+        socket.on('candidates', handleCandidatesUpdate);
+    }, []);
 
 
     function handleVoteForCandidate(candidate: ICandidate) {

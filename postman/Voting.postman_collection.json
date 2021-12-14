@@ -1,0 +1,180 @@
+{
+	"info": {
+		"_postman_id": "1bd2901c-21d6-4ebb-97b0-a06696dc6cb1",
+		"name": "SocketIODemoVotingCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "post vote for candidate 1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/votes/1",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"votes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post vote for candidate 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/votes/2",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"votes",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post candidate Toye",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Toye\",\n    \"pledge\": \"free pizza\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/candidates",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"candidates"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post candidate Grace",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Grace\",\n    \"pledge\": \"half-day Fridays\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/candidates",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"candidates"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post candidate Raj",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Raj\",\n    \"pledge\": \"more creative coding\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/candidates",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"candidates"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get candidates",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/candidates",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"candidates"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "<Basic Auth Username>",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "<Basic Auth Password>",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:3000",
+			"type": "string"
+		}
+	]
+}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import {baseURL} from '../api';
+import { baseURL } from '../api';
 export default function NewCandidateForm() {
     const [name, setName] = useState('');
     const [pledge, setPledge] = useState('');
@@ -13,7 +13,7 @@ export default function NewCandidateForm() {
             });
     }
     return (
-        <div>
+        <div className='controls'>
             <input
                 type="text"
                 value={name}

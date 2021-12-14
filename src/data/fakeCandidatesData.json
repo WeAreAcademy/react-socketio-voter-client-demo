@@ -1,0 +1,20 @@
+[
+  {
+    "id": 0,
+    "name": "Grace",
+    "pledge": "Half-day Fridays",
+    "numVotes": 9
+  },
+  {
+    "id": 1,
+    "name": "Raj",
+    "pledge": "More creative coding",
+    "numVotes": 10
+  },
+  {
+    "id": 2,
+    "name": "Toye",
+    "pledge": "free pizza",
+    "numVotes": 4
+  }
+]

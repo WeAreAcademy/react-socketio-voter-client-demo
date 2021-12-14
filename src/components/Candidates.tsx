@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import NewCandidateForm from './NewCandidateForm'
-import {baseURL} from '../api';
+import { baseURL } from '../api';
+import fakeCandidatesData from '../data/fakeCandidatesData.json'
 export default function Candidates() {
     interface ICandidate {
         id?: number;
@@ -9,11 +10,17 @@ export default function Candidates() {
         pledge: string;
         numVotes?: number;
     }
+
     const [candidates, setCandidates] = useState<ICandidate[]>([]);
 
     async function fetchAndStoreCandidates() {
-        const res = await axios.get(`${baseURL}/candidates`);
-        setCandidates(res.data);
+        try {
+            const res = await axios.get(`${baseURL}/candidates`);
+            setCandidates(res.data);
+        } catch (err) {
+            console.error('error fetching candidates', err);
+        }
+
     }
     useEffect(() => {
         fetchAndStoreCandidates();
@@ -25,19 +32,19 @@ export default function Candidates() {
         axios
             .post(`${baseURL}/votes/${candidate.id}`)
             .catch(function (error) {
-                console.log('when posting candidate: ', error);
+                console.log('Error when posting candidate: ', error);
             });
     }
 
 
     return (
         <div className="candidatesList">
-            Candidates:
+            <h2>Candidates:</h2>
             {candidates.map((c) => (
-                <div key={c.id}>
-                    <span>{c.name}</span>
-                    <span>({c.pledge})</span>
-                    <span>Votes: {c.numVotes}</span>
+                <div className='candidate' key={c.id}>
+                    <span className='name'>{c.name}</span>
+                    <span className='pledge'>"{c.pledge}"</span>
+                    <span className='votes'>Votes: <span className='voteNumber'>{c.numVotes}</span></span>
                     <button onClick={ev => handleVoteForCandidate(c)}>Vote for {c.name}</button>
                 </div>
             ))}

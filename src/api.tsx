@@ -1,1 +1,1 @@
-export const baseURL = 'https://socketioserverfinished.neillbogie.repl.co';
+export const baseURL = 'https://socketioserver.neillbogie.repl.co';

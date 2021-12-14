@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { io } from 'socket.io-client';
 import NewCandidateForm from './NewCandidateForm'
 import {baseURL} from '../api';
 export default function Candidates() {
@@ -20,44 +19,11 @@ export default function Candidates() {
         fetchAndStoreCandidates();
     }, []);
 
-    useEffect(() => {
-        console.log('trying to set up socket.io');
-
-        const socket = io(baseURL);
-
-        console.log('socket connected');
-
-        socket.emit('hello', 'from react!');
-
-        socket.on('candidates', (receivedCandidates: ICandidate[]) => {
-            console.log('socketio rx: candidates');
-            setCandidates(receivedCandidates);
-        });
-
-        socket.on('time', (serverId, timeStr, randomNum) => {
-            console.log('socketio rx: req', timeStr);
-        });
-        socket.on('req', (path) => {
-            console.log('socketio rx: req', path);
-        });
-
-        console.log('socket registered listeners');
-
-        function desubscribe() {
-            console.log('closing socket.io socket')
-            socket.disconnect();
-        }
-        return desubscribe;
-    }, []);
 
 
     function handleVoteForCandidate(candidate: ICandidate) {
         axios
             .post(`${baseURL}/votes/${candidate.id}`)
-
-            .then(function (response) {
-                console.log('after posting candidate: ', response);
-            })
             .catch(function (error) {
                 console.log('when posting candidate: ', error);
             });

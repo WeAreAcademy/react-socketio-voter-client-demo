@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import {baseURL} from '../api';
 export default function NewCandidateForm() {
     const [name, setName] = useState('');
     const [pledge, setPledge] = useState('');
 
     function handleAddCandidate() {
         const body = { name, pledge };
-        axios
-            .post('https://socketioserverfinished.neillbogie.repl.co/candidates', body)
-            .then(function (response) {
-                console.log('after posting candidate: ', response);
-            })
+        axios.post(`${baseURL}/candidates`, body)
             .catch(function (error) {
                 console.error('when posting candidate: ', error);
             });

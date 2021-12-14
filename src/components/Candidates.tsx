@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { io } from 'socket.io-client';
 import NewCandidateForm from './NewCandidateForm'
-
+import {baseURL} from '../api';
 export default function Candidates() {
     interface ICandidate {
         id?: number;
@@ -13,10 +13,8 @@ export default function Candidates() {
     const [candidates, setCandidates] = useState<ICandidate[]>([]);
 
     async function fetchAndStoreCandidates() {
-        const res = await axios.get(
-            'https://socketioserverfinished.neillbogie.repl.co/candidates'
-        );
-        setCandidates(await res.data);
+        const res = await axios.get(`${baseURL}/candidates`);
+        setCandidates(res.data);
     }
     useEffect(() => {
         fetchAndStoreCandidates();
@@ -25,9 +23,7 @@ export default function Candidates() {
     useEffect(() => {
         console.log('trying to set up socket.io');
 
-        const socket = io(
-            'https://socketioserverfinished.neillbogie.repl.co'
-        );
+        const socket = io(baseURL);
 
         console.log('socket connected');
 
@@ -48,7 +44,7 @@ export default function Candidates() {
         console.log('socket registered listeners');
 
         function desubscribe() {
-            socket.emit('desubscribing...');
+            console.log('closing socket.io socket')
             socket.disconnect();
         }
         return desubscribe;
@@ -57,7 +53,7 @@ export default function Candidates() {
 
     function handleVoteForCandidate(candidate: ICandidate) {
         axios
-            .post(`https://socketioserverfinished.neillbogie.repl.co/votes/${candidate.id}`)
+            .post(`${baseURL}/votes/${candidate.id}`)
 
             .then(function (response) {
                 console.log('after posting candidate: ', response);

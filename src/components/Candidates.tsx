@@ -31,9 +31,15 @@ export default function Candidates() {
         const socket = io(baseURL);
         console.log('connecting to socket.io and registering interest');
         function handleCandidatesUpdate(newCandidates: ICandidate[]) {
+            console.log("got candidates update from socket.io");
             setCandidates(newCandidates);
         }
         socket.on('candidates', handleCandidatesUpdate);
+        function cleanup() {
+            console.log('disconnecting from socket.io server');
+            socket.disconnect();
+        }
+        return cleanup;
     }, []);
 
 
